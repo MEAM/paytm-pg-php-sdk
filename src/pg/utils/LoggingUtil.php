@@ -7,9 +7,6 @@
     namespace paytmpg\pg\utils;
 
     use Exception;
-    use Monolog\Formatter\LineFormatter;
-    use Monolog\Handler\StreamHandler;
-    use Monolog\Logger;
     use paytmpg\pg\constants\Config;
 
     /**
@@ -39,20 +36,5 @@
          */
         public static function addLog($severity, $className, $msg)
         {
-            if (!isset(static::$logger)) {
-                if (!Config::$monologLogfile) {
-                    throw new \Exception('Monolog log file not set');
-                }
-                static::$logger = new Logger(Config::$monologName);
-                $stream = new StreamHandler(Config::$monologLogfile, Config::$monologLevel);
-                $formatter = new LineFormatter(null, null, false, true);
-                /** Uncomment the below line to use Json formatted logs */
-                //$formatter = new JsonFormatter($stream);
-                $stream->setFormatter($formatter);
-                static::$logger->pushHandler($stream);
-                /** Uncomment the below line to disable logs */
-                //static::$logger->pushHandler(new \Monolog\Handler\NullHandler());
-            }
-            static::$logger->log($severity, "[" . Config::$requestId . "] " . "<" . $className . ">" . ": " . $msg);
         }
     }

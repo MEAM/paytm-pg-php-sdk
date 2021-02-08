@@ -13,21 +13,6 @@
     {
 
         /**
-         * @var string
-         */
-        static $monologName = '[PAYTM]';
-
-        /**
-         * @var int
-         */
-        static $monologLevel = \Monolog\Logger::INFO;
-
-        /**
-         * @var string
-         */
-        static $monologLogfile = null;
-
-        /**
          * This holds unique uuid v4
          *
          * @var string
